@@ -39,7 +39,7 @@ With [`bash/install-bash.sh`](./bash/install-bash.sh)
 Or [`bash/install-zsh.sh`](./bash/install-zsh.sh)
 
 ```bash
-curl -sS https://raw.githubusercontent.com/chvolkmann/code-connect/main/bash/install-bash.sh | bash
+curl -sS https://raw.githubusercontent.com/badaz/code-connect/main/bash/install-bash.sh | bash
 ```
 
 This downloads [`code_connect.py`](./bin/code_connect.py) along with two scripts and sets up aliases in your `.bashrc` for you. See [`bash/code.sh`](./bash/code.sh) and [`bash/code-connect.sh`](./bash/code-connect.sh)
@@ -47,7 +47,7 @@ This downloads [`code_connect.py`](./bin/code_connect.py) along with two scripts
 Or
 
 ```zsh
-curl -sS https://raw.githubusercontent.com/chvolkmann/code-connect/main/bash/install-zsh.sh | bash
+curl -sS https://raw.githubusercontent.com/badaz/code-connect/main/bash/install-zsh.sh | bash
 ```
 
 This downloads [`code_connect.py`](./bin/code_connect.py) along with two scripts and sets up aliases in your `.zshrc` for you. See [`bash/code.sh`](./bash/code.sh) and [`bash/code-connect.sh`](./bash/code-connect.sh)
@@ -58,13 +58,13 @@ With [`bash/uninstall.sh`](./bash/uninstall-bash.sh)
 Or [`bash/uninstall.sh`](./bash/uninstall-zsh.sh)
 
 ```bash
-curl -sS https://raw.githubusercontent.com/chvolkmann/code-connect/main/bash/uninstall-bash.sh | bash
+curl -sS https://raw.githubusercontent.com/badaz/code-connect/main/bash/uninstall-bash.sh | bash
 ```
 
 Deletes the aliases from `~/.bashrc` and removes the folder `~/.code-connect`
 
 ```zsh
-curl -sS https://raw.githubusercontent.com/chvolkmann/code-connect/main/bash/uninstall-zsh.sh | bash
+curl -sS https://raw.githubusercontent.com/badaz/code-connect/main/bash/uninstall-zsh.sh | bash
 ```
 
 Deletes the aliases from `~/.zshrc` and removes the folder `~/.code-connect`
