@@ -3,6 +3,7 @@
 # https://github.com/chvolkmann/code-connect
 
 import os
+import pwd
 import subprocess as sp
 import sys
 import time
@@ -13,7 +14,6 @@ from typing import Iterable, List, NoReturn, Sequence, Tuple
 # IPC sockets will be filtered based when they were last accessed
 # This gives an upper bound in seconds to the timestamps
 DEFAULT_MAX_IDLE_TIME: int = 4 * 60 * 60
-
 
 def fail(*msgs, retcode: int = 1) -> NoReturn:
     """ Prints messages to stdout and exits the script. """
@@ -80,6 +80,8 @@ def get_code_binary() -> Path:
     _, code_repo = code_repos[0]
     return code_repo / "bin" / "remote-cli" / "code"
 
+def find_owner(filepath):
+    return pwd.getpwuid(os.stat(filepath).st_uid).pw_name
 
 def get_ipc_socket(max_idle_time: int = DEFAULT_MAX_IDLE_TIME) -> Path:
     """ Returns the path to the most recently accessed IPC socket. """
@@ -88,6 +90,10 @@ def get_ipc_socket(max_idle_time: int = DEFAULT_MAX_IDLE_TIME) -> Path:
     # Some of these are obsolete and not actively listening anymore
     uid = os.getuid()
     socks = sort_by_access_timestamp(Path(f"/run/user/{uid}/").glob("vscode-ipc-*.sock"))
+    if len(socks) == 0:
+        socks = sort_by_access_timestamp(Path(f"/tmp/").glob("vscode-ipc-*.sock"))
+
+    socks = list(filter(lambda sock: find_owner(sock[1]) == os.environ.get('USER'), socks))
 
     # Only consider the ones that were active N seconds ago
     now = time.time()

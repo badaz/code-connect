@@ -1,7 +1,5 @@
 # code-connect
 
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/chvolkmann/code-connect?label=version&style=flat-square)
-
 Open a file in your locally running Visual Studio Code instance from arbitrary terminal connections.
 
 ## Motivation
@@ -33,53 +31,43 @@ Afterwards, you should have a folder `.vscode-server` in your home directory.
 
 ## Installation
 
-### [Fish](https://fishshell.com/)
-
-#### Installing
-
-With [fisher](https://github.com/jorgebucaran/fisher)
-
-```fish
-fisher install chvolkmann/code-connect
-```
-
-This downloads [`code_connect.py`](./bin/code_connect.py) along with two functions. See [`functions/code.fish`](./functions/code.fish) and [`functions/code-connect.fish`](./functions/code-connect.fish)
-
-You can autocomplete the repository name in subsequent commands, e.g. `fisher update code<TAB>`
-
-#### Updating
-
-```fish
-fisher update chvolkmann/code-connect
-```
-
-#### Uninstalling
-
-```fish
-fisher remove chvolkmann/code-connect
-```
-
 ### Bash
 
 #### Installing & Updating
 
-With [`bash/install.sh`](./bash/install.sh)
+With [`bash/install-bash.sh`](./bash/install-bash.sh)
+Or [`bash/install-zsh.sh`](./bash/install-zsh.sh)
 
 ```bash
-curl -sS https://raw.githubusercontent.com/chvolkmann/code-connect/main/bash/install.sh | bash
+curl -sS https://raw.githubusercontent.com/chvolkmann/code-connect/main/bash/install-bash.sh | bash
 ```
 
 This downloads [`code_connect.py`](./bin/code_connect.py) along with two scripts and sets up aliases in your `.bashrc` for you. See [`bash/code.sh`](./bash/code.sh) and [`bash/code-connect.sh`](./bash/code-connect.sh)
 
+Or
+
+```zsh
+curl -sS https://raw.githubusercontent.com/chvolkmann/code-connect/main/bash/install-zsh.sh | bash
+```
+
+This downloads [`code_connect.py`](./bin/code_connect.py) along with two scripts and sets up aliases in your `.zshrc` for you. See [`bash/code.sh`](./bash/code.sh) and [`bash/code-connect.sh`](./bash/code-connect.sh)
+
 #### Uninstalling
 
-With [`bash/uninstall.sh`](./bash/uninstall.sh)
+With [`bash/uninstall.sh`](./bash/uninstall-bash.sh)
+Or [`bash/uninstall.sh`](./bash/uninstall-zsh.sh)
 
 ```bash
-curl -sS https://raw.githubusercontent.com/chvolkmann/code-connect/main/bash/uninstall.sh | bash
+curl -sS https://raw.githubusercontent.com/chvolkmann/code-connect/main/bash/uninstall-bash.sh | bash
 ```
 
 Deletes the aliases from `~/.bashrc` and removes the folder `~/.code-connect`
+
+```zsh
+curl -sS https://raw.githubusercontent.com/chvolkmann/code-connect/main/bash/uninstall-zsh.sh | bash
+```
+
+Deletes the aliases from `~/.zshrc` and removes the folder `~/.code-connect`
 
 ## Usage
 
@@ -151,9 +139,9 @@ as a child process with `VSCODE_IPC_HOOK_CLI` set properly, making it a drop-in 
 
 When we already have a `code` executable available, we don't need to search for it ourselves using `code_connect.py`. So we introduce two more scripts:
 
-- `code-connect`  
+- `code-connect`
   Direct alias to `code_connect.py`
-- `code`  
+- `code`
   Checks whether there is a `code` executable locally installed already and tries to use it if available. Otherwise, `code-connect` will be used.
 
 ## Contributing
